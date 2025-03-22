@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SocialMediaRestWebservicesApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SocialMediaRestWebservicesApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SocialMediaRestWebservicesApplication.class, args);
+    }
 
 }
