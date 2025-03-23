@@ -1,4 +1,5 @@
 package com.socialmedia.rest.webservices.restfulwebservices.user;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -22,11 +23,17 @@ public class UserResource {
 
     @GetMapping("/users/{id}")
     public User retrieveUser(@PathVariable int id) {
-        return service.findOne(id);
+        User user = service.findOne(id);
+
+        if (user == null) {
+            throw new UserNotFoundException("id: " + id);
+        }
+
+        return user;
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         var savedUser = service.save(user);
         // Sets Location for Header value
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -35,5 +42,12 @@ public class UserResource {
                 .toUri();
         return ResponseEntity.created(location).build();
     }
+
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable int id) {
+        service.deleteById(id);
+    }
+
+
 
 }
