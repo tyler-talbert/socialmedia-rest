@@ -3,16 +3,14 @@ package com.socialmedia.rest.webservices.restfulwebservices.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.socialmedia.rest.webservices.restfulwebservices.posts.Post;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity(name = "user_details")
+@Entity
+@Table(name = "user_details")
 public class User {
 
     protected User() {
